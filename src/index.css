@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+:root {
+  background-color: rgb(26, 26, 26);
+  color: white;
+}
+
+.btn-grp {
+  display: flex;
+  gap: 2rem;
+  & > * {
+    padding: 0.5rem 1rem;
+    border: 1px solid white;
+    border-radius: 1rem;
+    &:hover {
+      border-color: red;
+      background-color: rgb(41, 41, 41);
+    }
+  }
+}
+
+.popover-content {
+  position: absolute;
+  background: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+/* Show popover when button is hovered */
+/* #popover-button:hover + .popover-content,
+.popover-content:hover {
+  display: block;
+} */
