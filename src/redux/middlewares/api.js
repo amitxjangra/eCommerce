@@ -1,13 +1,14 @@
 export const apiMiddleware = (store) => (next) => (action) => {
-  console.log("eaaa", next, action);
-  if (action.type === "api/call") {
+  if (action?.type === "api/call") {
     const BASE_URL = "https://fakestoreapi.com";
     const {
       url,
       method,
       data,
-      headers,
+      headers = {},
       onSuccess,
+      onError,
+      meta = {},
       //  onFail
     } = action.payload;
     const config = {
@@ -25,14 +26,16 @@ export const apiMiddleware = (store) => (next) => (action) => {
       .then((response) => response.json())
       .then((data) => {
         if (onSuccess) {
-          store.dispatch(onSuccess(data));
+          store.dispatch({ type: onSuccess, payload: data });
+        }
+        if (meta?.onSuccess) {
+          meta.onSuccess(data);
         }
       })
       .catch((error) => {
-        // if (onFail) {
-        //   store.dispatch(onFail(error));
-        // }
-        console.error("Error:", error);
+        if (meta?.onError) {
+          meta?.onError(error);
+        }
       });
   } else {
     next(action);

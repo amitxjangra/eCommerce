@@ -1,31 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { saveAllProducts } from "../../redux/slices/products";
 import Card from "./components/Card";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
+  const allProducts = useSelector((state) => state.products);
+  const search = useSelector((state) => state.search);
+
   useEffect(() => {
-    dispatch({
-      type: "api/call",
-      payload: {
-        url: "/products",
-        method: "GET",
-        onSuccess: (data) => {
-          setProducts(data);
+    if (!allProducts.length && !search)
+      dispatch({
+        type: "api/call",
+        payload: {
+          url: "/products",
+          method: "GET",
+          onSuccess: "products/saveAllProducts",
         },
-        headers: {},
-      },
-    });
-  }, []);
-  console.log(products);
+      });
+  }, [allProducts, search]);
+
   return (
     <>
-      <div>All Products</div>
+      <div>
+        {search
+          ? "Showing Results - " +
+            search +
+            " Found - " +
+            allProducts?.length +
+            " items"
+          : "All Products"}
+      </div>
       <div className="flex flex-wrap justify-around gap-5 ">
-        {products.map((i) => (
-          <Card {...i} />
-        ))}
+        {allProducts?.length ? (
+          allProducts.map((i, index) => <Card key={index.toString()} {...i} />)
+        ) : (
+          <>Loading...</>
+        )}
       </div>
     </>
   );

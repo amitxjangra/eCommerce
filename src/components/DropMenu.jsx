@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/dropmenu.css";
 
-const DropMenu = () => {
+const DropMenu = (la) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef(null);
   const dropdownRef = useRef(null);
