@@ -2,13 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/eCommerce/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shop Demo - Redux</title>
-    <script type="module" crossorigin src="/assets/index-D0sEbrK4.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Cssy0HL6.css">
+    <script type="module" crossorigin src="/eCommerce/assets/index-Cblqhdk-.js"></script>
+    <link rel="stylesheet" crossorigin href="/eCommerce/assets/index-Cssy0HL6.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Redirect to index.html on GitHub Pages for client-side routing
+      if (
+        location.pathname.startsWith("/eCommerce/") &&
+        !location.pathname.endsWith(".html") &&
+        !location.pathname.includes(".")
+      ) {
+        location.replace("/eCommerce/index.html");
+      }
+    </script>
   </body>
 </html>
