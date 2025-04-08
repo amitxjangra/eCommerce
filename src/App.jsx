@@ -5,7 +5,7 @@ import Products from "./pages/products";
 
 function App() {
   return (
-    <BrowserRouter basename="/eCommerce/">
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />}></Route>
         <Route path="/products" element={<Layout />}>

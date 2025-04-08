@@ -9,15 +9,5 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-      // Redirect to index.html on GitHub Pages for client-side routing
-      if (
-        location.pathname.startsWith("/eCommerce/") &&
-        !location.pathname.endsWith(".html") &&
-        !location.pathname.includes(".")
-      ) {
-        location.replace("/eCommerce/index.html");
-      }
-    </script>
   </body>
 </html>
